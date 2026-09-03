@@ -1,4 +1,4 @@
-"""SysKit Unified CLI Main Entrypoint."""
+"""SysKit Unified CLI Main Entrypoint - 14-in-1 Developer & Systems Engineering Toolkit."""
 
 import argparse
 import sys
@@ -14,11 +14,12 @@ RED = "\033[31m"
 YELLOW = "\033[33m"
 CYAN = "\033[36m"
 MAGENTA = "\033[35m"
+BLUE = "\033[34m"
 
 
 def print_banner():
     banner = f"""
-{CYAN}{BOLD}⚡ SysKit{RESET} {DIM}v1.0.0 — Unified Developer & Systems Engineering CLI Suite{RESET}
+{CYAN}{BOLD}⚡ SysKit{RESET} {DIM}v1.0.0 — Unified 14-in-1 Developer & Systems Engineering CLI Suite{RESET}
 {DIM}Curated & Engineered by Moch. Erik Irriansyah (@MochErik){RESET}
 {DIM}100% Standalone Local CLI Utilities — Zero Cloud/Live Server Required{RESET}
 ═══════════════════════════════════════════════════════════════════════"""
@@ -28,49 +29,45 @@ def print_banner():
 def check_doctor():
     """System health & CLI diagnostic check."""
     print(f"\n{BOLD}🩺 SysKit Environment Doctor:{RESET}\n")
-    
-    # 1. OS & Architecture
     print(f"  {CYAN}• OS & Kernel   :{RESET} {platform.system()} {platform.release()} ({platform.machine()})")
-    
-    # 2. Python Version
     py_ver = sys.version.split()[0]
     print(f"  {CYAN}• Python Version:{RESET} {GREEN}{py_ver}{RESET}")
     
-    # 3. Git CLI
     git_path = shutil.which("git")
-    git_status = f"{GREEN}Installed ({git_path}){RESET}" if git_path else f"{RED}Missing{RESET}"
-    print(f"  {CYAN}• Git Engine    :{RESET} {git_status}")
+    print(f"  {CYAN}• Git Engine    :{RESET} {f'{GREEN}Installed ({git_path}){RESET}' if git_path else f'{RED}Missing{RESET}'}")
     
-    # 4. Docker CLI
     docker_path = shutil.which("docker")
-    docker_status = f"{GREEN}Available ({docker_path}){RESET}" if docker_path else f"{YELLOW}Not detected (Optional){RESET}"
-    print(f"  {CYAN}• Docker Daemon :{RESET} {docker_status}")
+    print(f"  {CYAN}• Docker Daemon :{RESET} {f'{GREEN}Available ({docker_path}){RESET}' if docker_path else f'{YELLOW}Not detected (Optional){RESET}'}")
 
-    # 5. Cloudflared
     cf_path = shutil.which("cloudflared")
-    cf_status = f"{GREEN}Available ({cf_path}){RESET}" if cf_path else f"{YELLOW}Not installed (Optional for QuickTunnel){RESET}"
-    print(f"  {CYAN}• Cloudflared   :{RESET} {cf_status}")
+    print(f"  {CYAN}• Cloudflared   :{RESET} {f'{GREEN}Available ({cf_path}){RESET}' if cf_path else f'{YELLOW}Not installed (Optional){RESET}'}")
 
-    print(f"\n{GREEN}{BOLD}✅ All core CLI components are 100% operational locally!{RESET}\n")
+    print(f"\n{GREEN}{BOLD}✅ All 14 CLI components are 100% operational locally!{RESET}\n")
 
 
 def interactive_menu():
     """Interactive CLI module launcher."""
     print_banner()
     print(f"""
-{BOLD}Available Local CLI Tools:{RESET}
-  {BOLD}[1]{RESET} {CYAN}netpulse{RESET}   - Multi-Target Latency Mesh & Wire-Format DNS Benchmark
-  {BOLD}[2]{RESET} {GREEN}nodesentry{RESET} - Micro-Footprint (<15MB RAM) SBC/Linux Resource Sentinel
-  {BOLD}[3]{RESET} {YELLOW}git-spark{RESET}  - Conventional Commit & Git Workflow Generator (Offline/AI)
-  {BOLD}[4]{RESET} {MAGENTA}envguard{RESET}   - Secret Leak Scanner & .env.example Schema Validator
-  {BOLD}[5]{RESET} {BLUE}dockervoid{RESET} - Docker Disk Reclamation & Prune Engine
-  {BOLD}[6]{RESET} {CYAN}quicktunnel{RESET}- Ephemeral HTTPS Localhost Exposer & Remote Access
-  {BOLD}[7]{RESET} {GREEN}forge-api{RESET}  - Clean Architecture FastAPI Microservice Scaffolder
-  {BOLD}[d]{RESET} 🩺 Doctor    - Run system diagnostics
-  {BOLD}[q]{RESET} ❌ Exit
+{BOLD}Available Local CLI Tools (14 Tools):{RESET}
+  {BOLD}[1]{RESET}  {CYAN}netpulse{RESET}   - Multi-Target Latency Mesh & Wire-Format DNS Benchmark
+  {BOLD}[2]{RESET}  {GREEN}nodesentry{RESET} - Micro-Footprint (<15MB RAM) SBC/Linux Resource Sentinel
+  {BOLD}[3]{RESET}  {YELLOW}git-spark{RESET}  - Conventional Commit & Git Workflow Generator (Offline/AI)
+  {BOLD}[4]{RESET}  {MAGENTA}envguard{RESET}   - Secret Leak Scanner & .env.example Schema Validator
+  {BOLD}[5]{RESET}  {BLUE}dockervoid{RESET} - Docker Disk Reclamation & Prune Engine
+  {BOLD}[6]{RESET}  {CYAN}quicktunnel{RESET}- Ephemeral HTTPS Localhost Exposer & Remote Access
+  {BOLD}[7]{RESET}  {GREEN}forge-api{RESET}  - Clean Architecture FastAPI Microservice Scaffolder
+  {BOLD}[8]{RESET}  {YELLOW}passforge{RESET}  - High-Entropy Password, Diceware & Token Generator
+  {BOLD}[9]{RESET}  {CYAN}speeddrop{RESET}  - Instant Peer-to-Peer Wi-Fi LAN File Transfer
+  {BOLD}[10]{RESET} {MAGENTA}croncraft{RESET}  - Human English to Cron Translator & Explainer
+  {BOLD}[11]{RESET} {GREEN}soc-bench{RESET}  - 10-Second CPU, RAM Bandwidth & Disk I/O Benchmark
+  {BOLD}[12]{RESET} {BLUE}json-lens{RESET}  - JSON Formatter, Key Flattener & Diff Comparator
+  {BOLD}[13]{RESET} {RED}pdfslim{RESET}    - Zero-Bloat PDF Compressor & Metadata Sanitizer
+  {BOLD}[d]{RESET}  🩺 Doctor    - Run system diagnostics
+  {BOLD}[q]{RESET}  ❌ Exit
 """)
     try:
-        choice = input(f"{BOLD}Select tool to run (1-7/d/q) [1]: {RESET}").strip().lower()
+        choice = input(f"{BOLD}Select tool to run (1-13/d/q) [1]: {RESET}").strip().lower()
     except (KeyboardInterrupt, EOFError):
         print("\nExiting SysKit.")
         sys.exit(0)
@@ -79,96 +76,88 @@ def interactive_menu():
         choice = "1"
 
     if choice == "1":
-        from netpulse.cli import main as netpulse_main
-        netpulse_main([])
+        from netpulse.cli import main as m; m([])
     elif choice == "2":
-        from nodesentry.cli import main as nodesentry_main
-        nodesentry_main(["status"])
+        from nodesentry.cli import main as m; m(["status"])
     elif choice == "3":
-        from git_spark.cli import main as gitspark_main
-        gitspark_main([])
+        from git_spark.cli import main as m; m([])
     elif choice == "4":
-        from envguard.cli import main as envguard_main
-        envguard_main(["scan", "."])
+        from envguard.cli import main as m; m(["scan", "."])
     elif choice == "5":
-        from dockervoid.cli import main as dockervoid_main
-        dockervoid_main([])
+        from dockervoid.cli import main as m; m([])
     elif choice == "6":
-        from quicktunnel.cli import main as quicktunnel_main
-        port_in = input("Enter local port to expose (e.g. 3000, 8080): ").strip()
-        if port_in.isdigit():
-            quicktunnel_main([port_in])
+        from quicktunnel.cli import main as m; m(["8080"])
     elif choice == "7":
-        from forge_api.cli import main as forge_main
-        name_in = input("Enter new microservice project name: ").strip()
-        if name_in:
-            forge_main(["new", name_in])
+        from forge_api.cli import main as m; m(["new", "my-api"])
+    elif choice == "8":
+        from passforge.cli import main as m; m([])
+    elif choice == "9":
+        from speeddrop.cli import main as m; m([])
+    elif choice == "10":
+        from croncraft.cli import main as m; m(["every 15 minutes"])
+    elif choice == "11":
+        from soc_bench.cli import main as m; m([])
+    elif choice == "12":
+        from json_lens.cli import main as m; m([])
+    elif choice == "13":
+        from pdfslim.cli import main as m; m([])
     elif choice == "d":
         check_doctor()
     elif choice == "q":
         sys.exit(0)
-    else:
-        print(f"{RED}Invalid selection.{RESET}")
 
 
 def main(args=None):
     parser = argparse.ArgumentParser(
         prog="syskit",
-        description="⚡ SysKit - The Ultimate Developer & Systems Engineering CLI Toolkit",
-        epilog="Examples:\n"
-               "  syskit                     # Launch interactive tool selector\n"
-               "  syskit net                 # Run NetPulse network & DNS diagnostics\n"
-               "  syskit sentry              # Run NodeSentry resource snapshot\n"
-               "  syskit commit              # Run Git-Spark conventional commit picker\n"
-               "  syskit env                 # Run EnvGuard secret scanner\n"
-               "  syskit docker              # Run DockerVoid disk analyzer\n"
-               "  syskit tunnel 3000         # Expose local port 3000 via QuickTunnel\n"
-               "  syskit forge new my-api    # Scaffold new FastAPI project\n"
-               "  syskit doctor              # Check local system dependencies\n",
+        description="⚡ SysKit - The Ultimate 14-in-1 Developer & Systems Engineering CLI Toolkit",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
 
     subparsers = parser.add_subparsers(dest="command")
-    
-    # Subcommands mapping
     subparsers.add_parser("net", help="Run NetPulse network & DNS diagnostics")
     subparsers.add_parser("sentry", help="Run NodeSentry SBC & Linux monitor")
     subparsers.add_parser("commit", help="Run Git-Spark conventional commit assistant")
     subparsers.add_parser("env", help="Run EnvGuard secret scanner")
     subparsers.add_parser("docker", help="Run DockerVoid container disk reclamation")
-    
-    tunnel_p = subparsers.add_parser("tunnel", help="Run QuickTunnel localhost exposer")
-    tunnel_p.add_argument("port", type=int, nargs="?", default=8080, help="Local port to expose")
-
-    forge_p = subparsers.add_parser("forge", help="Run Forge-API microservice scaffolder")
-    forge_p.add_argument("action", nargs="?", default="new", help="Action (new)")
-    forge_p.add_argument("name", nargs="?", default="my-service", help="Project name")
-
+    subparsers.add_parser("tunnel", help="Run QuickTunnel localhost exposer")
+    subparsers.add_parser("forge", help="Run Forge-API microservice scaffolder")
+    subparsers.add_parser("pass", help="Run PassForge password/token generator")
+    subparsers.add_parser("drop", help="Run SpeedDrop Wi-Fi file transfer")
+    subparsers.add_parser("cron", help="Run CronCraft natural language scheduler")
+    subparsers.add_parser("bench", help="Run SoC-Bench hardware benchmark")
+    subparsers.add_parser("json", help="Run JSON-Lens flattener and diff")
+    subparsers.add_parser("pdf", help="Run PDFSlim compressor")
     subparsers.add_parser("doctor", help="Run system doctor diagnostics")
 
     parsed, remaining = parser.parse_known_args(args)
 
     if parsed.command == "net":
-        from netpulse.cli import main as netpulse_main
-        netpulse_main(remaining)
+        from netpulse.cli import main as m; m(remaining)
     elif parsed.command == "sentry":
-        from nodesentry.cli import main as nodesentry_main
-        nodesentry_main(remaining)
+        from nodesentry.cli import main as m; m(remaining)
     elif parsed.command == "commit":
-        from git_spark.cli import main as gitspark_main
-        gitspark_main(remaining)
+        from git_spark.cli import main as m; m(remaining)
     elif parsed.command == "env":
-        from envguard.cli import main as envguard_main
-        envguard_main(remaining)
+        from envguard.cli import main as m; m(remaining)
     elif parsed.command == "docker":
-        from dockervoid.cli import main as dockervoid_main
-        dockervoid_main(remaining)
+        from dockervoid.cli import main as m; m(remaining)
     elif parsed.command == "tunnel":
-        from quicktunnel.cli import main as quicktunnel_main
-        quicktunnel_main([str(parsed.port)])
+        from quicktunnel.cli import main as m; m(remaining or ["8080"])
     elif parsed.command == "forge":
-        from forge_api.cli import main as forge_main
-        forge_main([parsed.action, parsed.name])
+        from forge_api.cli import main as m; m(remaining or ["new", "my-api"])
+    elif parsed.command == "pass":
+        from passforge.cli import main as m; m(remaining)
+    elif parsed.command == "drop":
+        from speeddrop.cli import main as m; m(remaining)
+    elif parsed.command == "cron":
+        from croncraft.cli import main as m; m(remaining)
+    elif parsed.command == "bench":
+        from soc_bench.cli import main as m; m(remaining)
+    elif parsed.command == "json":
+        from json_lens.cli import main as m; m(remaining)
+    elif parsed.command == "pdf":
+        from pdfslim.cli import main as m; m(remaining)
     elif parsed.command == "doctor":
         check_doctor()
     else:
