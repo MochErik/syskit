@@ -33,7 +33,7 @@ curl -sSL https://raw.githubusercontent.com/MochErik/syskit/main/install.sh | ba
 
 Or install via `pip`:
 ```bash
-pip install syskit-cli
+pip install git+https://github.com/MochErik/syskit.git-cli
 ```
 
 ---
